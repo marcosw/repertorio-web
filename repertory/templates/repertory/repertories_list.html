@@ -1,0 +1,43 @@
+{% extends "repertory/base.html" %}
+
+{% block menu-left %}
+	<label>REPERTÓRIOS</label>
+{% endblock %}
+
+{% block content %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<a href="{% url 'repertory:repertory_add' %}">
+	Incluir
+</a>
+<a href="{% url 'repertory:index' %}"> |
+	Voltar ao início
+</a>
+
+{% if repertories_list %}
+	<ul>
+		<li><b>Evento do Repertório | Local | Data | Quantidade de músicas</b></li>
+		{% for repertory in repertories_list %}
+		<li>
+			<a href="{% url 'repertory:repertory_detail' repertory.id %}">
+				{{ repertory.event.eventType }} | {{ repertory.event.location.name }} | {{ repertory.event.date }} | 3 Música(s)
+			</a>
+			<a href="{% url 'repertory:repertory_edit' repertory.id%}">
+				[[ Editar ]]
+			</a>
+			<a href="{% url 'repertory:repertory_remove' repertory.id %}">
+				[[ Remover ]]
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<p>Não existem repertórios cadastrados.</p>
+{% endif %}
+{% endblock %}

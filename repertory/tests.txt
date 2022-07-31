@@ -1,0 +1,3 @@
+Testar:
+
+* Remover registros para verificar se regras de integridade estão corretas.

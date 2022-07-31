@@ -1,0 +1,36 @@
+<h2>Detalhes de Repertório</h2>
+
+<a href=".">Aprovar</a> |
+<a href=".">Editar</a> |
+<a href=".">Remover</a>
+<br/><br/>
+
+<b>Evento: </b>{{ repertory.event.eventType.name}} - {{ repertory.event.location.name}} - {{ repertory.event.date}}
+<br/>
+<b>Estado: </b>
+{% if repertory.repertoryStatus == 0 %}
+	Pendente para aprovação
+{% else %}
+	Aprovado
+{% endif %}
+<br/><br/>
+<fieldset>
+<legend><b>Envolvidos</b></legend>
+{% for user in repertory.involved.all %}
+	<li>
+		{{ user.username }} - {{ user.first_name }} {{ user.last_name }}
+	</li>
+{% endfor %}
+</fieldset>
+<br/>
+<fieldset>
+<legend><b>Músicas</b></legend>
+{% for music in repertory.musics.all %}
+	<li>
+		<!-- Criar link para detalhe da música -->
+		<!-- Definir categoria unica para a música dentro do repertorio, ou qual a categoria específica para o repertorio em si, apesar da mesma ter várias. -->
+		{{ music.name }} - {{ music.tone }}
+	</li>
+{% endfor %}
+</fieldset>
+<br/>

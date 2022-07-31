@@ -1,0 +1,23 @@
+{% if event_id %}
+<h2>Alteração de Evento</h2>
+{% else %}
+<h2>Cadastro de Evento</h2>
+{% endif %}
+
+{% if event_id %}
+<form action="{% url 'repertory:event_edit' event_id %}" method="post">
+{% else %}
+<form action="{% url 'repertory:event_add' %}" method="post">
+{% endif %}
+	{% csrf_token %}
+	<p>{{ form.non_field_errors }}</p>
+	<p>Tipo de evento:</p>
+	<p>{{ form.eventType }}</p>{{ form.eventType.errors }}
+	<p>Local:</p>
+	<p>{{ form.location }}</p>{{ form.location.errors }}
+	<p>Data:</p>
+	<p>{{ form.date }}</p>{{ form.date.errors }}
+	<p>Observação:</p>
+	<p>{{ form.observation }}</p>{{ form.observation.errors }}
+	<input type="submit" value="Enviar">
+</form>

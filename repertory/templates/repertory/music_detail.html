@@ -1,0 +1,92 @@
+{% extends "repertory/base.html" %}
+
+{% block content %}
+
+<h2>Detalhes de Música</h2>
+
+<a href=".">Aprovar</a> | 
+<a href=".">Compartilhar</a> | 
+<a href=".">Editar</a> |
+<a href=".">Remover</a>
+<br/><br/>
+
+<b>Nome:</b> {{ music.name }}
+<br/>
+<b>Primeira frase:</b> {{ music.firstPhrase }}
+<br/>
+<b>Tom principal:</b> {{ music.tone }}
+<br/>
+<b>Autor:</b> {{ music.author }}
+<br/>
+{% if music.referenceURL %}
+<b>Referência na WEB: </b>
+<a href="{{ music.referenceURL }}" target="blank">{{ music.referenceURL }}</a>
+<br/>
+{% endif %}
+{% if music.musicReference %}
+<b>Música Referência:</b> {{ music.musicReference }}
+<br/>
+{% endif %}
+<b>Adicionada por:</b> {{ music.user.username }}
+<br/>
+<b>Compartilhada:</b>
+{% if music.shared %}
+Sim
+{% else %}
+Não
+{% endif %}
+<br/><br/>
+<fieldset>
+<legend>Categorização</legend>
+<b>Categorias compatíveis:</b>
+<br/>
+{% for musicCathegory in music.musicCathegories.all %}
+	{{ musicCathegory.name }}
+	<br/>
+{% endfor %}
+<b>Tempos litúrgicos compatíveis:</b>
+<br/>
+{% for liturgicalTime in music.liturgicalTimes.all %}
+	{{ liturgicalTime.name }}
+	<br/>
+{% endfor %}
+<b>Anos litúrgicos compatíveis:</b>
+<br/>
+{% for liturgicalYear in music.liturgicalYears.all %}
+	{{ liturgicalYear.name }}
+	<br/>
+{% endfor %}
+</fieldset>
+<br/>
+<fieldset>
+<legend>Arquivos carregados</legend>
+<b>Cifra:</b>
+{{ music.cipherFile }}
+<a href="/musicas/download/{{ music.id }}/1">Obter arquivo</a>
+<br/>
+<b>Partitura:</b>
+{% if music.scoreFile %}
+	{{ music.scoreFile }}
+	<a href="/musicas/download/{{ music.id }}/2">Obter arquivo</a>
+{% else %}
+	Nenhum.
+{% endif %}
+<br/>
+<b>Tablatura:</b>
+{% if music.tabFile %}
+	{{ music.tabFile }}
+	<a href="/musicas/download/{{ music.id }}/3">Obter arquivo</a>
+{% else %}
+	Nenhum.
+{% endif %}
+<br/>
+<b>Áudio:</b>
+{% if music.audioFile %}
+	{{ music.audioFile }}
+	<a href="/musicas/download/{{ music.id }}/4">Obter arquivo</a>
+{% else %}
+	Nenhum.
+{% endif %}
+</fieldset>
+<br/>
+{% endblock %}

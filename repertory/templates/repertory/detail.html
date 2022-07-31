@@ -1,0 +1,23 @@
+<h2>Detalhes de Repertório</h2>
+
+<!-- {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %} -->
+
+Nome: {{ repertory.name }}
+<br/>
+Evento: {{ repertory.event.name}}
+<br/>
+Estado: 
+{% if repertory.repertoryStatus == 0 %}
+	Suspenso
+{% else %}
+	Aprovado
+{% endif %}
+
+<h3>Músicas do repertório</h3>
+{% for music in repertory.musics.all %}
+	<li>
+		<!-- Criar link para detalhe da música -->
+		<!-- Definir categoria unica para a música dentro do repertorio, ou qual a categoria específica para o repertorio em si, apesar da mesma ter várias. -->
+		{{ music.name }} - {{ music.tone }}
+	</li>
+{% endfor %}

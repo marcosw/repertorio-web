@@ -1,0 +1,49 @@
+<h2>Eventos</h2>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<a href="{% url 'repertory:event_add' %}">
+	Incluir
+</a>
+<a href="{% url 'repertory:index' %}"> |
+	Voltar ao início
+</a>
+<br/><br/>
+
+<form action="{% url 'repertory:events_list' %}" method="post">
+	{% csrf_token %}
+	<label for="eventType">Tipo de Evento: </label>
+	<input type="text" id="eventType" name="eventType">
+	<label for="location">Local: </label>
+	<input type="text" id="location" name="location">
+	<label for="date">Data: </label>
+	<input type="text" id="date" name="date">
+	<input type="submit" value="Filtrar">
+</form>
+
+{% if events_list %}
+	<ul>
+		<li><b>Tipo | Local | Data </b></li>
+		{% for event in events_list %}
+		<li>
+			<a href="{% url 'repertory:event_detail' event.id %}">
+				{{ event.eventType }} | {{ event.location.name }} | {{ event.date }}
+			</a>
+			<a href="{% url 'repertory:event_edit' event.id%}">
+				[[ Editar ]]
+			</a>
+			<a href="{% url 'repertory:event_remove' event.id%}">
+				[[ Remover ]]
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<p>Não existem eventos cadastrados.</p>
+{% endif %}

@@ -1,0 +1,72 @@
+
+Prioridades de desenvolvimento atual:
+
+* Montar form de cadastro para músicas, para isso:
+	* Verificar possibilidade utilizar ferramenta para "evolução" do banco de dados. Ao mesmo tempo verificar se as ultimas alterações mo modelo estão corretas.
+* Verificar impacto de alterar o nome do projeto e da app após já gerado a aplicação e desenvolvido alguma coisa.
+* Opção para download de todos os arquivos compactados de um repertório. Pesquisar por GZip compression (documentação django)
+* Restringir tipos de arquivos para upload
+* O usuário deve ter permissão de acessa uma view de música caso ele digite seu código diretamente pela URL.
+* A listagem de músicas deve ser feita filtrando pelo usuário atual. caso seja compartilhada, não deve haver filtro.
+* Devem ser listados todos os repertórios e eventos do local do usuário ou do qual o usuário faça parte.
+* Verificar (continuar) como permitir apenas que usuário com permissão remova uma música compartilhada.
+* Enviar e-mail contendo link para troca de senha.
+* Pesquisar por django-bootstrap-toolkit, conforme https://groups.google.com/forum/#!searchin/django-brasil/Marcos$20Luiz$20Wilhelm/django-brasil/3vMvaHMfFNU/XliIfOxb3_UJ
+	* Qualquer coisa entrar em contato com Robertson (no link acima)
+* Criar repertórios (também eventos e músicas) unicos, pois ao adicionar um comentário em um repertório x, outro repertório com o mesmo nome também recebeu o comentário.
+* Fazer os forms para os comentários e seus respectivos fluxos de exclusão e alteração. Tratar mensagem quando não existem comentários (template)
+* Verificar a quem será visível os comentários para músicas (nem todos os usuários podem ver todos os comentários)
+* Adicionar on_delete=models.PROTECT em todos os lugares necessários. Adicionar try exception para capturar estes erros de integridade quando ocorrer. (é uma exception do tipo IntegrityError)
+* Utilizar ManyToManyField.through para definir observações e ordem das músicas adicionadas em um repertório.
+* Verificar se ao atulizar uma música, os dados das tabelas associativas relacionadas à musica são removidos e os novos são adicionados.
+* Não permitir cadastrar uma música que tenha o mesmo nome e o mesmo tom
+* Adicionar metodo para editar repertório.
+* Remover arquivo de upload quando o mesmo é modificado no objeto e persistido
+* TESTAR SOBRESCRITA DO ARQUIVO AO ATUALIZAR UM OBJETO MÚSICA. Otimar a remoção dos arquivos físicos ao remover o objeto Music.
+* Adicionar busca avançada para música por categorias, Tempos litúrgicos e anos.
+* Adicionar opção para listar apenas músicas do usuário.
+* Adicionar opção para pesquisar por minhas músicas e todas as músicas
+* Ajustar javascript por tela, para poder setar foco em campos em específicos em cada tela.
+* Remover classes referência web e músicas referência do modelo
+* Adicionar validação de permissão ao remover/editar músicas
+* Verificar se ao remover uma música ou repertório suas notificações são excluídas juntas.
+
+Perfumaria:
+* Gráfico de músicas mais utilizadas
+* Gráfico de quantidade de eventos tocados
+* Adicionar efeito fade ao fechar mensagem (alert do bootstrap)
+
+Tratar validações quando:
+* Campos são obrigatórios
+* Registros já existem (unique) - Ambas são classes do tipo "errorlist" (pesquisar django documentation)
+
+
+
+
+
+Correções necessárias para prosseguir:
+* Verificar como ordenar por chave estrangeira (na model, por exemplo o Event)
+* Erro ao selecionar arquivo pela tela de alteração.
+* Não salva música no firefox.
+* Cor de campos de plugins django bootstrap estão diferentes
+* Passando muitos parâmetros no momento de salvar.
+* Descobrir como traduzir mensagens de plugins
+* Terminar músicas compartilhadas/não compartilhadas (considerar tbm se o usuário for do tipo aprovador, o botão aprovar compartilhamento deve ser exibido)
+* Add popover hover sobre o botão "compartilhar" (ajustar item atual) (tem código comentado)
+* Após aprovada uma música, apenas o usuário aprovador pode editá-la.
+* Ajustar para que apenas usuários com perfil de aprovador possam receber notificações para aprovação de música. 
+* Corrigir o atributo sentForApproval que retorna a false quando uma música é salva novamente. (ajustar código que foi commitado!!!)
+* Usuário com perfil de aprovador não precisa passar pelo fluxo de aprovação ao compartilhar uma música.
+* Adicionar botão para compartilhar a partir do momento em que o usuário cria uma música (se não for o aprovador)
+* Somente o usuário criador pode compartilhar sua música (ter o botão "compartilhar disponível"). Usuários aprovadores não podem compartilhar a música de outro usuário.
+* Validar no lado servidor também que apenas o dono da música pode compartilhá-la, evitando que alguem compartilhe pela url.
+* O aprovador deve obrigatoriamente justificar uma música suspensa por ele.
+* Após aprovada a música deve realmente estar compartilhada com todos os usuários. (criar opção de filtro "Minhas/todas")
+* Apenas o dono de uma música pode removê-la, porém após compartilhada ninguem mais pode.
+* Verificar se ao salvar uma música após aprovada, o status share retorna para false. (Provavelmente terá que corrigir isso)
+* Verificar se "@permission_required('repertory.approve_music', raise_exception=True)" da view de aprovação de música está funcionando corretamente. 
+
+Plugins bons para autocomplete com tags:
+1 - http://ivaynberg.github.io/select2/
+
+

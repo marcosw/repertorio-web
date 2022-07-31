@@ -1,0 +1,28 @@
+Configurações da aplicação:
+***************************
+
+1) Instalar app de abstração do banco PostgreSQL:
+	sudo apt-get build-dep python-psycopg2
+	pip install psycopg2 
+
+2) Instalar app de componentes select2 contido dentro da pasta django-plugins
+	pip install django-select2-master
+	
+3) Caso o plugin django_select2 não funcionar em ambiente de desenvolvimento, provavelmente precise de permissão. Executar comando:
+	sudo chmod 755 -R /usr/local/lib
+
+
+Configurações de ambiente de desenvolvimento:
+*********************************************
+ 
+1) Senha do Postgresql
+	Entre no diretório /etc/init.d
+	cd /etc/init.d/
+	Logue no postgresql usando a conta root:
+	sudo -u postgres psql template1
+	Depois quando estiver no psql digite o seguinte comando SQL:
+	ALTER USER postgres WITH PASSWORD ‘***password***’;
+	onde ***password*** é a sua nova senha.
+	por exemplo
+	ALTER USER postgres WITH PASSWORD ‘postgres’;
+	Saia do console do postgresql digitando \q

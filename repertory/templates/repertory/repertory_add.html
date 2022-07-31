@@ -1,0 +1,21 @@
+{% if repertory_id %}
+<h2>Alteração de Repertório</h2>
+{% else %}
+<h2>Cadastro de Repertório</h2>
+{% endif %}
+
+{% if repertory_id %}
+<form action="{% url 'repertory:repertory_edit' repertory_id %}" method="post">
+{% else %}
+<form action="{% url 'repertory:repertory_add' %}" method="post">
+{% endif %}
+	{% csrf_token %}
+	<p>{{ form.non_field_errors }}</p>
+	<p>Evento:</p>
+	<p>{{ form.event }}</p>{{ form.event.errors }}
+	<p>Envolvidos:</p>
+	<p>{{ form.involved }}</p>{{ form.involved.errors }}
+	<p>Músicas:</p>
+	<p>{{ form.musics }}</p>{{ form.musics.errors }}
+	<input type="submit" value="Enviar">
+</form>

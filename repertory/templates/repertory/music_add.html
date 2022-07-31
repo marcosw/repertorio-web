@@ -1,0 +1,125 @@
+{% extends "repertory/base.html" %}
+
+{% block menu-left %}
+{% if music_id %}
+<div><h3>ALTERAÇÃO DE MÚSICA</h3></div>
+{% else %}
+<div><h3>NOVA MÚSICA</h3></div>
+{% endif %}
+{% endblock %}
+
+{% block menu-right %}
+{% if music_id and not sent_for_approval %}
+	<button type="button" id="music-share-btn" class="btn btn-warning">COMPARTILHAR</button>
+{% elif music_id and sent_for_approval and not shared_music and has_approve_music_permission %}
+	<button type="button" id="music-approve-btn" class="btn btn-success">APROVAR</button>
+{% elif music_id and shared_music %}
+	<span href="#" id="shared_icon" class="glyphicon glyphicon-share" title="Música compartilhada"></span>
+{% endif %}
+<button type="button" id="music-save-btn" class="btn btn-default">SALVAR</button>
+{% endblock %}
+
+{% block content %}
+<div id="panel-add">
+	{% if music_id %}
+	<form id="save-music-form" class ="form-horizontal" role="form" enctype="multipart/form-data" action="{% url 'repertory:music_edit' music_id %}" method="post">
+	{% else %}
+	<form id="save-music-form" class ="form-horizontal" role="form" enctype="multipart/form-data" action="{% url 'repertory:music_add' %}" method="post">
+	{% endif %}
+		{% csrf_token %}
+		<p>{{ form.non_field_errors }}</p>
+		<div id="messages"></div>
+		<div class="form-group">
+	 		<label for="id_name" class="col-lg-2 control-label">Nome</label>
+	 		<div class="col-lg-10">
+	 			{{ form.name }}
+	 		</div>
+		</div>
+		<div class="form-group">
+	 		<label for="id_firstPhrase" class="col-lg-2 control-label">Primeira frase</label>
+	 		<div class="col-lg-10">
+	 			{{ form.firstPhrase }}
+	 		</div>
+		</div>
+		<div class="form-group">
+	 		<label for="id_tone" class="col-lg-2 control-label">Tom principal</label>
+	 		<div class="col-lg-10">
+	 			{{ form.tone }}
+	 		</div>
+		</div>
+		<div class="form-group">
+	 		<label for="id_author" class="col-lg-2 control-label">Autor</label>
+	 		<div class="col-lg-10">
+	 			{{ form.author }}
+	 		</div>
+		</div>
+		<div class="form-group">
+	 		<label for="id_musicCathegories" class="col-lg-2 control-label">Categorias</label>
+	 		<div class="col-lg-10">
+	 			{{ form.musicCathegories }}
+	 		</div>
+		</div>
+		<div class="form-group">
+	 		<label for="id_liturgicalTimes" class="col-lg-2 control-label">Tempos Litúrgicos</label>
+	 		<div class="col-lg-10">
+	 			{{ form.liturgicalTimes }}
+	 		</div>
+		</div>
+		<div class="form-group">
+	 		<label for="id_liturgicalYears" class="col-lg-2 control-label">Anos Litúrgicos</label>
+	 		<div class="col-lg-10">
+	 			{{ form.liturgicalYears }}
+	 		</div>
+		</div>
+		<div class="form-group">
+	 		<label class="col-lg-2 control-label">Cifra</label>
+	 		<div class="col-lg-10">
+	 			{{ form.cipherFile }}
+	 		</div>
+		</div>
+		<div class="form-group">
+	 		<label class="col-lg-2 control-label">Partitura</label>
+	 		<div class="col-lg-10">
+	 			{{ form.scoreFile }}
+	 		</div>
+		</div>
+		<div class="form-group">
+	 		<label class="col-lg-2 control-label">Tablatura</label>
+	 		<div class="col-lg-10">
+	 			{{ form.tabFile }}
+	 		</div>
+		</div>
+		<div class="form-group">
+	 		<label class="col-lg-2 control-label">Áudio</label>
+	 		<div class="col-lg-10">
+	 			{{ form.audioFile }}
+	 		</div>
+		</div>
+	</form>
+</div>
+{% if music_id %}
+<!-- Modal para envio de mensagem ao aprovador da música -->
+<div class="modal fade" id="musicAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="modalTitle"></h4>
+			</div>
+			<form id="workflowMusicForm" class ="form-horizontal" role="form" action="" method="post">
+				{% csrf_token %}
+				<input type="hidden" id="musicId" value="{{ music_id }}">
+				<div class="modal-body">
+					<label for="messageToUser" id="messageToUserLabel"></label>
+					<textarea class="form-control" id="messageToUser" name="messageToUser" placeholder="Digite aqui sua mensagem" width="300"></textarea>
+				</div>	
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+					<button type="button" class="btn btn-primary"></button>
+				</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{% endif %}
+{% endblock %}

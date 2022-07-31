@@ -1,0 +1,348 @@
+/*!
+ *
+ * Aqui fazemos mudanças de alguns estilos do bootstrap
+ *
+ * Bootstrap v3.0.0
+ *
+ * Copyright 2013 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
+
+/*! normalize.css v2.1.0 | MIT License | git.io/normalize */
+
+.navbar { 
+	border-radius: 0px;
+	margin-bottom: 0px;
+}
+
+.navbar #notification-content {
+	width: 198px;
+}
+
+.navbar .popover-title {
+	padding: 8px;
+}
+
+.navbar .popover-content {
+	padding: 0;
+	max-height:400px;
+	overflow-y:auto;
+}
+
+.navbar #notification-content {
+	padding: 8px; 
+}
+
+.navbar .popover-title h6, .navbar .popover-content h6 {
+	margin: 0;
+}
+
+.btn {
+	border-radius: 0px;
+}
+
+.form-control {
+	width: auto; /* Sobrescreve width 100% do bootstrap */
+	border-radius: 0;
+}
+
+.popover {
+	border-radius: 0;
+}
+
+.alert {
+	margin-top: 10px;
+}
+
+.navbar input { 
+	border-radius: 0px;
+}
+
+.navbar .glyphicon {
+	color: white;
+	font-size: 17px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.navbar .glyphicon-search {
+	position: absolute;
+	color: rgb(150,150,150);
+	margin-left: -3px;
+	margin-top: 13px;
+}
+
+.navbar .form-control {
+	padding-left: 30px;
+	width: 400px;
+}
+
+.navbar .badge{ 
+	background-color: rgb(209, 30, 30);
+	margin-left: -15px;
+}
+
+#header .caret {
+	margin-left: -10px;
+}
+
+#menu .panel { 
+	border-radius: 0px;
+	background-color: rgb(28, 99, 177);
+	border: 0;
+	margin-bottom: 0;
+	height: 105px;
+}
+
+#menu .panel-body {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+#menu h1, #menu h2, #menu h3, #menu h4, #menu h5, #menu h6 {
+	margin: 0;
+}
+
+#menu-left {
+	position: relative;
+	float: left;
+	padding-top:40px;
+	color: white;
+}
+
+#menu-right {
+	position: relative;
+	float:right;
+}
+
+#menu-right .btn {
+	margin-top: 30px;
+	margin-left: 10px;
+	font-weight: bold;
+	color: rgb(28, 99, 177);
+	padding: 10px 25px 10px 25px;
+}
+
+#menu-right #events_button, 
+#menu-right #repertories_button, 
+#menu-right #musics_button {
+	position: relative;
+	float: right;
+	background-color: rgb(28, 59, 116);
+	margin-left: 5px;
+	width: 105px;
+	height: 105px;
+	-webkit-border-radius: 100px; /* Chrome */
+	-moz-border-radius: 100px; /* Firefox */
+}
+
+/*#menu-right #events_button div:hover, 
+#menu-right #repertories_button div:hover, 
+#menu-right #musics_button div:hover {
+	background-color: rgb(12, 29, 60);
+}*/
+
+#menu-right #events_button_label {
+	position: absolute;
+	margin-left: 28px;	
+	margin-top: 70px;
+	color: rgb(210, 210, 210);
+}
+#menu-right #repertories_button_label{
+	position: absolute;
+	margin-left: 16px;	
+	margin-top: 70px;
+	color: rgb(210, 210, 210);
+}
+#menu-right #musics_button_label{
+	position: absolute;
+	margin-left: 28px;	
+	margin-top: 70px;
+	color: rgb(210, 210, 210);
+}
+
+#menu-right #events_button_icon {
+	position: absolute;
+	margin-left: 37px;	
+	margin-top: 20px;
+	font-size: 35px; /* Aumenta o tamanho do ícone */
+	color: rgb(210, 210, 210);
+}
+#menu-right #repertories_button_icon {
+	position: absolute;
+	margin-left: 36px;	
+	margin-top: 20px;
+	font-size: 35px; /* Aumenta o tamanho do ícone */
+	color: rgb(210, 210, 210);
+}
+#menu-right #musics_button_icon {
+	position: absolute;
+	margin-left: 34px;	
+	margin-top: 20px;
+	font-size: 35px; /* Aumenta o tamanho do ícone */
+	color: rgb(210, 210, 210);
+}
+#menu-right #shared_icon {
+	position: absolute;
+	margin-left: -70px;
+	margin-top: 29px;
+	font-size: 35px;
+	color: white;
+}
+
+#tabs a {
+	color: rgb(100, 100, 100);
+	font-weight: bold;
+}
+
+#tabs {
+	background-color: rgb(230,230,230);
+	padding-top: 13px;
+	margin-bottom: 15px;
+}
+
+#tabs .nav {
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+#tabs .nav .active a{
+	color: rgb(50, 50, 50);
+}
+
+#content {
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+#main-page-table #content-table-left #left {
+	position: relative;
+	float: left;
+	padding-top: 6px;
+	padding-right: 10px;
+}
+
+#main-page-table #content-table-left #right {
+	position: relative;
+	float: left;
+}
+
+#content h1, #content h2, #content h3, #content h4, #content h5 {
+	margin: 0;
+}
+
+#content h6 {
+	margin: 0;
+	color: rgb(100,100,100);
+}
+
+#content #table-list-header {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	height: 40px;
+}
+
+#content #table-list-header #left{
+	position: relative;
+	float: left;
+	margin-top: 6px;
+}
+
+#content #table-list-header #right{
+	position: relative;
+	float: right;
+}
+
+#content #table-list-header #right .glyphicon-search {
+	position: absolute;
+	margin-top: 7px;
+	margin-left: 7px;
+	color: rgb(150,150,150);
+}
+
+#content #table-list-header #right input {
+	width: 450px;
+	padding-left: 26px;
+}
+
+#content #table-list-body thead {
+	background-color: rgb(230,230,230);
+}
+
+#content #table-list-body .glyphicon {
+	font-size: 17px;
+	padding-left: 10px;
+}
+
+#content #table-list-body #icon-column {
+	width: 105px;
+	text-align: center;
+}
+
+#content .panel {
+	border-radius: 0px;
+}
+
+#content #panel-add {
+	margin-top: 20px;
+}
+
+#content input {
+	border-radius: 0px;
+}
+
+#main-page-table .glyphicon {
+	color: rgb(51, 116, 213);
+	margin-right: 10px;
+	font-size: 17px;
+}
+
+#main-page-table #content-table-left {
+	position: relative;
+	float: left;
+}
+
+#main-page-table #content-table-right {
+	position: relative;
+	float: right;
+	padding-top: 6px;
+}
+
+/*Modal genérica*/
+.modal label {
+	font-weight: normal;
+}
+
+/*Modal de aprovação de música*/
+#musicAddModal #messageToUser {
+	width: 537px;
+	height: 100px;	
+}
+#musicAddModal label {
+	margin-bottom: 10px;
+}
+#musicAddModal textarea {
+	resize:vertical /*somente permite o redimensionamento vertical do textarea*/
+}
+
+/*Propriedades plugin noty*/
+#panel-add #messages {
+	margin-bottom: 10px;
+}
+
+/*Propriedades Popover*/
+/*Popover de erro para campos inválidos*/
+#content .popover {
+	background-color: #FF8686;
+}
+#content .popover.right .arrow:after {
+	border-right-color: #FF8686;
+}
+#content .popover-content {
+	padding: 4px 14px;
+}

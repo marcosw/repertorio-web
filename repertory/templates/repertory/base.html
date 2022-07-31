@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'repertory/bootstrap/dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'repertory/css/bootstrap-changes.css' %}">
+    <script type="text/javascript" src="{% static 'repertory/js/jquery/jquery-1.11.0.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'repertory/plugins/noty/js/noty/packaged/jquery.noty.packaged.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'repertory/plugins/noty/js/noty/themes/montfort.js' %}"></script>
+	<script type="text/javascript" src="{% static 'repertory/plugins/form-master/jquery.form.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'repertory/bootstrap/js/dropdown.js' %}"></script>
+    <script type="text/javascript" src="{% static 'repertory/bootstrap/js/tab.js' %}"></script>
+    <script type="text/javascript" src="{% static 'repertory/bootstrap/js/transition.js' %}"></script>
+    <script type="text/javascript" src="{% static 'repertory/bootstrap/js/tooltip.js' %}"></script>
+    <script type="text/javascript" src="{% static 'repertory/bootstrap/js/popover.js' %}"></script>
+    <script type="text/javascript" src="{% static 'repertory/bootstrap/js/alert.js' %}"></script>
+    <script type="text/javascript" src="{% static 'repertory/bootstrap/js/modal.js' %}"></script>
+    <script type="text/javascript" src="{% static 'repertory/js/app/main.js' %}"></script>
+    <title>{% block title %}RepertórioWeb{% endblock %}</title>
+</head>
+
+<body>
+    <div id="header">
+        <nav class="navbar navbar-inverse" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href=".">RepertórioWeb</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <!-- <span class="glyphicon glyphicon-search"></span> -->
+                        <span class="glyphicon glyphicon-search"></span>
+                        <input type="text" class="form-control" placeholder="Pesquise por músicas">
+                    </div>
+                    <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="{% url 'repertory:index' %}">
+                            <span class="glyphicon glyphicon-home"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="notification" rel="popover"> 
+	                        <span class="glyphicon glyphicon-bell"></span>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="." class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href=".">Perfil</a></li>
+                            <li><a href="{% url 'repertory:sair' %}">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </div>
+    <div id="menu"> 
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div id="menu-left">
+                    {% block menu-left %}{% endblock %}
+                </div>
+                <div id="menu-right">
+                    {% block menu-right %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block tabs %}{% endblock %}
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+    <div id="footer">
+        {% block footer %}{% endblock %}
+    </div>
+</body>
+</html>

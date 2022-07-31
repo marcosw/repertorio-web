@@ -1,0 +1,130 @@
+<html lang="en">
+<head>
+	{% extends "repertory/base.html" %}
+</head>
+<body>
+	{% block menu-left %}
+	<div><h3>Olá <b>{{ userFirstName }}!</h3></b></div>
+	<div><h6><a href=".">Ver perfil</a></h6></div>
+	{% endblock %}
+
+	{% block menu-right %}
+	<h5>
+		<a href="{% url 'repertory:musics_list' %}">
+			<div id="musics_button">
+				<span id="musics_button_icon" class="glyphicon glyphicon-music"></span>
+				<div id="musics_button_label">Músicas</div>
+			</div>
+		</a>
+		<a href="{% url 'repertory:events_list' %}">
+			<div id="events_button">
+				<span id="events_button_icon" class="glyphicon glyphicon-calendar"></span>
+				<div id="events_button_label">Eventos</div>		
+			</div>
+		</a>
+		<a href="{% url 'repertory:repertories_list' %}">
+			<div id="repertories_button">
+				<span id="repertories_button_icon" class="glyphicon glyphicon-list"></span>
+				<div id="repertories_button_label">Repertórios</div>		
+			</div>
+		</a>
+	</h5>
+	{% endblock %}
+
+	{% block tabs %}
+	<div id="tabs">      
+		<ul class="nav nav-tabs" id="main-tab">
+			<li class="active"><a href="#last-musics">ÚLTIMAS MÚSICAS</a></li>
+			<li><a href="#last-repertories">ÚLTIMOS REPERTÓRIOS</a></li>
+		</ul>
+	</div>
+	{% endblock %}
+
+	{% block content %}
+	<div class="tab-content">
+		<div class="tab-pane fade in active" id="last-musics">
+			<table id="main-page-table" class="table table-bordered table-hover">
+				{% if musics_list %}
+				{% for music in musics_list %}
+				<tr>
+					<td>
+						<div id="content-table-left"> 
+							<div id="left">
+								<span class="glyphicon glyphicon-music"></span>
+							</div>
+							<div id="right">
+								<div>					
+									{{ music.name }}
+								</div>
+								<div>
+									<h6>{{ music.tone }} - {{ music.author.completeName }}<h6>
+								</div>
+							</div>
+						</div>
+						<div id="content-table-right"> 
+							<!-- <audio controls>
+								<source src="http://www.w3schools.com/html/horse.ogg" type="audio/ogg" />
+								<source src="http://www.w3schools.com/html/horse.mp3" type="audio/mpeg" />
+								<a href="http://www.w3schools.com/html/horse.mp3">horse</a>
+							</audio> -->
+							<!-- <span class="glyphicon glyphicon-play"></span></a> -->
+							<a href="{% url 'repertory:music_detail' music.id %}" title="Visualizar música">
+								<span class="glyphicon glyphicon-eye-open"></span>
+							</a>
+						</div>
+					</td>
+				</tr>
+				{% endfor %}
+				{% else %}
+				<tr>
+					<td>
+						<div id="content-table-left"> 
+							<span class="glyphicon glyphicon-music"></span> Nenhuma música :'(
+						</div>
+					</td>
+				</tr>
+				{% endif %}
+			</table>
+		</div>
+		<div class="tab-pane fade" id="last-repertories">
+			<table id="main-page-table" class="table table-bordered table-hover">
+				{% if repertories_list %}
+				{% for repertory in repertories_list %}
+				<tr>
+					<td>
+						<div id="content-table-left"> 
+							<div id="left">
+								<span class="glyphicon glyphicon-list"></span>
+							</div>
+							<div id="right">
+								<div>					
+									{{ repertory.event.eventType }} - {{ repertory.event.location.name }}
+								</div>
+								<div>
+									<h6>{{ repertory.event.date }}<h6>
+								</div>
+							</div>
+						</div>
+						<div id="content-table-right"> 
+							<a href="{% url 'repertory:repertory_detail' repertory.id %}" title="Visualizar repertório">
+								<span class="glyphicon glyphicon-eye-open"></span>
+							</a>
+						</div>
+					</td>
+				</tr>
+				{% endfor %}
+				{% else %}
+				<tr>
+					<td>
+						<div id="content-table-left"> 
+							<span class="glyphicon glyphicon-list"></span> Nenhum repertório :'(
+						</div>
+					</td>
+				</tr>
+				{% endif %}
+			</table>
+		</div>
+	</div>
+	{% endblock %}
+</body>
+</html>

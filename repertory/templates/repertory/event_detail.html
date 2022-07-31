@@ -1,0 +1,20 @@
+<h2>Detalhes de Evento</h2>
+
+<a href=".">Editar</a> |
+<a href=".">Remover</a>
+<br/><br/>
+
+<b>Tipo: </b>{{ event.eventType.name}}
+<br/>
+<b>Data: </b>{{ event.date }}
+<br/>
+<b>Observação: </b>{{ event.observation }}
+<br/><br/>
+<fieldset>
+<legend><b>Local</b></legend>
+	<b>Nome: </b>{{ event.location.name}}
+	<br/>
+	<b>Endereço: </b>{{ event.location.adress}}
+	<br/>
+	<b>Cidade: </b>{{ event.location.city.name }} - {{ event.location.city.federative_unit }}
+</fieldset>

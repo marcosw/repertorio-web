@@ -1,0 +1,80 @@
+{% extends "repertory/base.html" %}
+
+{% block menu-left %}
+<div><h3>MÚSICAS</h3></div>
+{% endblock %}
+
+{% block menu-right %}
+<a href="{% url 'repertory:music_add' %}" class="btn btn-default">NOVA MÚSICA</a>
+{% endblock %}
+
+
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'info' %} <div class="alert alert-info"> {% endif %} 
+{% if message.tags == 'success' %} <div class="alert alert-success"> {% endif %}
+	{{ message }} <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+</div>
+{% endfor %}
+{% endif %}
+
+<div id="table-list-header">
+	<div id="left"><b>VOCÊ TEM {{ count }} MÚSICAS</b></div>
+	<div id="right">
+		<div class="input-group">
+			<span class="glyphicon glyphicon-search"></span>
+			<form action="{% url 'repertory:musics_list' %}" method="post">
+				{% csrf_token %}
+				<input type="text" name="main_search_parameter" class="form-control" placeholder="Pesquise por músicas" value="{{ main_search_parameter }}">
+			</form>
+		</div>
+	</div>
+</div>
+<div id="table-list-body" class="panel panel-default">
+	<table class="table table-condensed table-hover">
+		<thead>
+			<tr>
+				<th>NOME</th>
+				<th>PRIMEIRA FRASE</th>
+				<th>TOM</th>
+				<th>AUTOR</th>
+				<th>COLABORADOR</th>
+				<th></th>
+			</tr>
+		</thead>
+		{% if musics_list %}
+		{% for music in musics_list %}
+		<tbody>
+			<tr>
+				<td>{{ music.name }}</td>
+				<td>{{ music.firstPhrase }}</td>
+				<td>{{ music.tone }}</td>
+				<td>{{ music.author.completeName }}</td>
+				<td>{{ music.user.username }}</td>
+				<td id="icon-column">
+					<a href="{% url 'repertory:music_detail' music.id %}" title="Visualizar">
+						<span class="glyphicon glyphicon-eye-open"></span>
+					</a>
+					<a href="{% url 'repertory:music_edit' music.id%}" title="Editar">
+						<span class="glyphicon glyphicon-edit"></span>
+					</a>
+					<a href="{% url 'repertory:music_remove' music.id %}" title="Excluir">
+						<span class="glyphicon glyphicon-trash"></span>
+					</a>
+				</td>
+			</tr>
+		<tbody>
+		{% endfor %}
+		{% else %}
+		<tr>
+			<td>
+				<div id="content-table-left"> 
+					Nenhuma música foi encontrada :'(
+				</div>
+			</td>
+		</tr>
+		{% endif %}
+	</table>
+</div>
+{% endblock %}

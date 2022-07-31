@@ -1,0 +1,21 @@
+{% extends "repertory/base.html" %}
+{% block content %}
+
+<h2>Acesso</h2>
+
+{% if form.errors %}
+	{{ form.non_field_errors }}
+{% endif %}
+
+<form action="" method="post">
+	{% csrf_token %}
+	<p>{{ form.username.label_tag }}</p>
+	<p>{{ form.username }}</p>
+	<p>{{ form.password.label_tag }}</p>
+	<p>{{ form.password }}</p>
+	<p><button type="submit">Acessar</button></p>
+	<!-- next tem a url da página que será exlibida após o login -->
+	<input type="hidden" name="next" value="{{ next }}">
+</form>
+
+{% endblock %}
